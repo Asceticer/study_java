@@ -7,9 +7,7 @@ import com.asceticer.study.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -37,21 +35,37 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    public String toAddEmployee(ModelMap map) {
+    public String toSaveEmployee(ModelMap map) {
         Collection<Department> departments = departmentDao.getDepartments();
         map.put("departments", departments);
-        return "detail";
+        return "employee/detail";
     }
 
     @PostMapping("/employee")
-    public String addEmployee(Employee employee) {
+    public String saveEmployee(Employee employee) {
         employeeDao.save(employee);
         return "redirect:/employee/employees";
     }
 
     @GetMapping("/employee/{id}")
-    public String toEditEmloyee() {
-        return "detail";
+    public String toUpdateEmployee(@PathVariable("id") Integer id, ModelMap map) {
+        Employee employee = employeeDao.get(id);
+        Collection<Department> departments = departmentDao.getDepartments();
+        map.put("departments", departments);
+        map.put("employee", employee);
+        return "employee/detail";
+    }
+
+    @PutMapping("/employee")
+    public String updateEmployee(Employee employee){
+        employeeDao.save(employee);
+        return "redirect:/employee/employees";
+    }
+
+    @DeleteMapping("/employee")
+    public String deleteEmployee(@PathVariable("id") Integer id){
+        employeeDao.delete(id);
+        return "redirect:/employee/employees";
     }
 
 }

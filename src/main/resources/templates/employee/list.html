@@ -72,30 +72,37 @@
 									<td th:text="${employee.gender}==0?'女':'男'"></td>
 									<td th:text="${employee.department.departmentName}"></td>
 									<td th:text="${#dates.format(employee.birth, 'yyyy-MM-dd')}"></td>
-									<td><a class="btn btn-sm btn-primary">编辑</a>
-										<a class="btn btn-sm btn-danger">删除</a>
+									<td><a class="btn btn-sm btn-primary" th:href="@{/employee/employee/}+${employee.id}">编辑</a>
+										<button th:attr="delete_uri=@{/employee/employee/}+${employee.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</main>
+				<form id="deleteEmployeeForm" method="post">
+					<input type="hidden" name="_method" value="delete"  />
+				</form>
 			</div>
 		</div>
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="../../static/asserts/js/jquery-3.2.1.slim.min.js"></script>
-		<script type="text/javascript" src="../../static/asserts/js/popper.min.js"></script>
-		<script type="text/javascript" src="../../static/asserts/js/bootstrap.min.js"></script>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/popper.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.js}"></script>
 
 		<!-- Icons -->
 		<script type="text/javascript" src="../../static/asserts/js/feather.min.js"></script>
 		<script>
 			feather.replace()
 		</script>
-
+		<script>
+			$(".deleteBtn").click(function (){
+				$("#deleteEmployeeForm").attr("action", $(this).attr("delete_uri")).submit();
+			});
+		</script>
 		<!-- Graphs -->
 		<script type="text/javascript" src="../../static/asserts/js/Chart.min.js"></script>
 		<script>
