@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * @Description: 处理员工相关业务请求
@@ -41,7 +40,7 @@ public class EmployeeController {
     public String toAddEmployee(ModelMap map) {
         Collection<Department> departments = departmentDao.getDepartments();
         map.put("departments", departments);
-        return "employee/add";
+        return "detail";
     }
 
     @PostMapping("/employee")
@@ -50,4 +49,10 @@ public class EmployeeController {
         return "redirect:/employee/employees";
     }
 
+    @GetMapping("/employee/{id}")
+    public String toEditEmloyee() {
+        return "detail";
+    }
+
 }
+
