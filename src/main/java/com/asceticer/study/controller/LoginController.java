@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
  * @Version: 1.0
  */
 @Controller
-@RequestMapping()
 public class LoginController {
 
     @PostMapping("/user/login")
