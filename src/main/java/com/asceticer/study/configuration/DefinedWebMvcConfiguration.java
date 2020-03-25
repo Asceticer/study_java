@@ -1,6 +1,6 @@
 package com.asceticer.study.configuration;
 
-import com.asceticer.study.component.Resolver.DefinedLocaleResolver;
+import com.asceticer.study.component.resolver.DefinedLocaleResolver;
 import com.asceticer.study.component.interceptor.LoginHandlerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,8 @@
-package com.asceticer.study.component.Handler;
+package com.asceticer.study.component.handler;
 
 import com.asceticer.study.HelloException;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -23,9 +21,11 @@ public class DefinedExceptionHandler {
     @ExceptionHandler(HelloException.class)
     public String handleException(Exception e, HttpServletRequest request){
         Map<String,String> map = new HashMap<>();
-        request.setAttribute("javax.servlet.error.status_code","500");
+        request.setAttribute("javax.servlet.error.status_code",500);
+        request.setAttribute("exception",e);
         map.put("ecoding", "utf-8");
         map.put("message", "天天向上");
+        request.setAttribute("ext", map);
         return "forward:/error";
     }
 }

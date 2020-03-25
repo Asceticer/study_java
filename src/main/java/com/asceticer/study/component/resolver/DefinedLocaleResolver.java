@@ -1,4 +1,4 @@
-package com.asceticer.study.component.Resolver;
+package com.asceticer.study.component.resolver;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
