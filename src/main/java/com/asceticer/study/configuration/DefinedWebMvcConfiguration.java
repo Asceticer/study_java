@@ -27,7 +27,7 @@ public class DefinedWebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/index", "/","/user/**","/error/**", "/hello/**");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/index", "/", "/error", "/hello/**", "/user/login");
     }
 
     @Bean

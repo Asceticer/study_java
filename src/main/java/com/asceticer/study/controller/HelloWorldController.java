@@ -1,6 +1,6 @@
 package com.asceticer.study.controller;
 
-import com.asceticer.study.exception.NotExsitException;
+import com.asceticer.study.HelloException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +19,11 @@ import java.util.Map;
 @Controller
 public class HelloWorldController {
 
-    @RequestMapping("/hello")
-    public String helloWorld(Map map){
+    @RequestMapping("/hello/{hello}")
+    public String helloWorld(@PathVariable("hello")String hello, Map map){
+        if ("hello".equals(hello)) {
+            throw new HelloException();
+        }
         map.put("hello", "<h2>你好！<h2>");
         map.put("users", Arrays.asList("zhangsan", "lisi", "wangwu"));
         return "hello";
